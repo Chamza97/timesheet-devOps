@@ -63,6 +63,12 @@
 	</dependencies>
 
 	<build>
+	<pluginManagement>
+    <plugins>
+      <!-- Leave as is -->
+     
+    </plugins>
+  </pluginManagement>
 		<plugins>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
