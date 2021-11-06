@@ -10,7 +10,7 @@
 	</parent>
 	<groupId>tn.esprit.spring</groupId>
 	<artifactId>Timesheet-spring-boot-core-data-jpa-mvc-REST-1</artifactId>
-	<version>1.0</version>
+	<version>1.3</version>
 	<packaging>jar</packaging>
 	<name>Timesheet-spring-boot-core-data-jpa-mvc-REST-1</name>
 	<description>Timesheet-spring-boot-core-data-jpa-mvc-REST-1</description>
@@ -61,7 +61,15 @@
     </exclusions>
 </dependency>
 	</dependencies>
-
+<distributionManagement>
+    <repository>
+        <uniqueVersion>false</uniqueVersion>
+        <id>deploymentRepo</id>
+        <name>target/Timesheet-spring-boot-core-data-jpa-mvc-REST-1-1.3.jar</name>
+        <url>http://localhost:8081/repository/maven-releases/</url>
+        <layout>default</layout>
+    </repository>
+</distributionManagement>
 	<build>
 	<pluginManagement>
     <plugins>
@@ -92,6 +100,28 @@
 				</includes>
 			</configuration>
 		</plugin>
+		<plugin>
+    <artifactId>maven-deploy-plugin</artifactId>
+    <version>2.8.2</version>
+    <executions>
+        <execution>
+            <id>deploy-file</id>
+            <phase>deploy</phase>
+            <goals>
+                <goal>deploy-file</goal>
+            </goals>
+            <configuration>
+                <file>target/Timesheet-spring-boot-core-data-jpa-mvc-REST-1-1.3.jar</file>
+                <url>http://localhost:8081/repository/maven-releases/</url>
+                <groupId>tn.esprit.spring</groupId>
+                <artifactId>Timesheet-spring-boot-core-data-jpa-mvc-REST-1</artifactId>
+                <version>1.0</version>
+                <packaging>jar</packaging>
+               
+            </configuration>
+        </execution>
+    </executions>
+</plugin>
 	</plugins>
 		
 	</build>
