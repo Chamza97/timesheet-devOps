@@ -70,76 +70,9 @@ public class TimesheetTest {
 	Mission mission;
 	private static final Logger L = LogManager.getLogger(TimesheetTest.class);
 	
-	@Before
-	public void setUp(){
-		java.util.List<Employe> listEmployees = iemployeservice.getAllEmployes();
-		if( iemployeservice.getAllEmployes().size() != 0) {
-			this.employeRepository.deleteAll();
-		};
-		departementRepo.deleteAll();
-		Departement dep = new Departement();
-		dep.setName("info");
-		this.departement =  this.departementRepo.save(dep);
-		Employe employe = new Employe();
-		employe.setActif(true);
-		employe.setEmail("amine.guesmi@esprit.tn");
-		employe.setNom("guesmi");
-		employe.setPrenom("amine");
-		employe.setRole(Role.ADMINISTRATEUR);
-		 this.iemployeservice.ajouterEmploye(employe);
-		this.emplyee = employe;
-		
-		Mission m = new Mission();
-		m.setName("mission1");
-		m.setDescription("mission1 desc");
-		m.setDepartement(dep);
-		this.itimesheetservice.ajouterMission(mission);
-		this.mission = m;
-		
-		try {
-			Contrat contrat  = new Contrat();
-			SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-			Date d = dateFormat.parse("2015-03-23");
-			contrat.setDateDebut(d);
-			contrat.setSalaire(2000);
-			contrat.setTypeContrat("CDI");
-			this.contrat = this.contratRepo.save(contrat);
-			
-		} catch (ParseException e) {
-			e.printStackTrace();
-		}
-		
-	}
 	
-	/********************************************/
 	
-	@Test
-	public void testAjouterTimesheet() {
-		Date db = new Date();
-		Date df = new Date();
-		this.itimesheetservice.ajouterTimesheet(this.mission.getId() , this.emplyee.getId() , db, df);
 	
-	}
-	/********************************************/
-	@Test
-	public void testAffecterMissionADepartement() {
-		this.itimesheetservice.affecterMissionADepartement(this.mission.getId(), this.departement.getId());
-		Mission  m = this.missionRepository.findById(this.mission.getId()).get();
-		assertTrue(m.getDepartement().getId() == this.departement.getId());
-	}
-	/********************************************/
-	@Test
-	public void testValiderTimesheet() {
-		
-		int missionId = this.mission.getId();
-		int employeId = this.emplyee.getId();
-		Date dateDebut = new Date();
-		Date dateFin = new Date();
-		int validateurId = 1;
-		
-		 this.itimesheetservice.validerTimesheet(missionId, employeId, dateDebut, dateFin, validateurId);
-	}
-	/********************************************/
 
 	
 }
