@@ -189,6 +189,12 @@ public class EmployeeTest {
 		assertTrue(this.employeRepository.findById(this.emplyee.getId()).isEmpty());
 		
 	}
+	@Test
+	public void log4J()
+	{
+		L.info("test success");
+		
+	}
 
 	
 	
