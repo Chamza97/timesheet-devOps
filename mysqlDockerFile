@@ -1,0 +1,10 @@
+FROM mysql:5.7.15
+
+MAINTAINER me
+
+ENV MYSQL_DATABASE=springdb \
+    MYSQL_ROOT_PASSWORD=queen
+
+
+
+EXPOSE 3306
